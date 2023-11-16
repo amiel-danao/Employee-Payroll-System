@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('alert', [\App\Http\Controllers\AlertController::class, 'index'])->name('alert.index');
 Route::post('alert/givepenalty', [\App\Http\Controllers\AlertController::class, 'givePenalty'])->name('alert.give-penalty');
 
-Route::resource('zzz', \App\Http\Controllers\TaskController::class)->only(['index', 'show', 'create', 'store', 'update']);
+Route::resource('zzz', \App\Http\Controllers\TaskController::class)->only(['index', 'show', 'create', 'store', 'update', 'destroy']);
 
 Route::group(['middleware' => ['role:admin', 'auth']], function () {
 
