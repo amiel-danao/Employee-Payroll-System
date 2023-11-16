@@ -7,6 +7,7 @@
     "require": {
         "php": "^8.2",
         "druc/laravel-langscanner": "^2.1",
+        "fakerphp/faker": "^1.9.1",
         "guzzlehttp/guzzle": "^7.2",
         "inertiajs/inertia-laravel": "^0.6.8",
         "intervention/validation": "^3.3",
@@ -20,8 +21,7 @@
         "tightenco/ziggy": "^1.0"
     },
     "require-dev": {
-        "barryvdh/laravel-debugbar": "^3.8",
-        "fakerphp/faker": "^1.9.1",
+        "barryvdh/laravel-debugbar": "^3.8",        
         "laravel/breeze": "^1.21",
         "laravel/pint": "^1.0",
         "laravel/sail": "^1.18",
