@@ -24,6 +24,10 @@ class MonthlyPayrollsHandle
         for ($i = 1; $i <= $employeesCount; $i++) {
             $employee = Employee::find($i);
 
+            if($employee == null){
+                continue;
+            }
+
             // Check if payroll already exists for the employee on this date
             $existingPayroll = Payroll::where('employee_id', $employee->id)->where('due_date', $date)->first();
 

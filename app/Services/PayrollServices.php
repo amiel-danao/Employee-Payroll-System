@@ -30,7 +30,7 @@ class PayrollServices
             'status' => true, // paid
         ]);
         if ($res['quick_pay_send_email']) {
-            Mail::to($payroll->employee->email)->queue(new PayrollEmail($payroll));
+            // Mail::to($payroll->employee->email)->queue(new PayrollEmail($payroll));
         }
         return to_route('payrolls.show', ['payroll' => $payroll]);
     }
@@ -113,7 +113,7 @@ class PayrollServices
         ]);
 
         if ($request->sendEmail && $payroll->status) {
-            Mail::to($payroll->employee->email)->queue(new PayrollEmail($payroll));
+            // Mail::to($payroll->employee->email)->queue(new PayrollEmail($payroll));
         }
     }
 }

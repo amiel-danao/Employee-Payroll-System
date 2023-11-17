@@ -5,6 +5,7 @@ import UpdateProfileInformationForm from './Partials/UpdateProfileInformationFor
 import {Head} from '@inertiajs/vue3';
 import EmployeeTabs from "@/Components/Tabs/EmployeeTabs.vue";
 
+
 defineProps({
     mustVerifyEmail: {
         type: Boolean,

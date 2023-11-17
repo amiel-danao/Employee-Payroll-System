@@ -35,7 +35,8 @@ Class ValidationServices extends Controller {
             'email' => ['required','unique:employees', 'email:strict'],
 //            'employee_id' => ['required', 'unique:employees', 'min:14', 'max:14'], // Egypt's Employee ID is 14 digits
             'employee_id' => ['required', 'unique:employees'],
-            'phone' => ['required', 'regex:/(^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$)/', 'unique:employees'],
+            // 'phone' => ['required', 'regex:/^(?:\+63|09)\d{9}$/', 'unique:employees'],
+            'phone' => ['required', 'regex:/^(?:\+639|09)\d{9}$/'],
             'hired_on' => ['nullable', 'date_format:Y-m-d'],
             'address' => ['required', 'string', 'max:255'],
             'bank_acc_no' => ['nullable', 'iban'],
@@ -60,7 +61,8 @@ Class ValidationServices extends Controller {
             'email' => ['required','unique:employees,email,'.$id, 'email:strict'],
 //            'employee_id' => ['required', 'unique:employees,employee_id,'.$id, 'min:14', 'max:14'], // Egypt's Employee ID is 14 digits
             'employee_id' => ['required', 'unique:employees,employee_id,'.$id],
-            'phone' => ['required', 'regex:/(^[\+]??[0-9]{3}?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$)/', 'unique:employees,phone,'.$id],
+            // 'phone' => ['required', 'regex:/^(?:\+63|09)\d{9}$/', 'unique:employees,phone,'.$id],
+            'phone' => ['required', 'regex:/^(?:\+639|09)\d{9}$/'],
             'hired_on' => ['nullable', 'date'],
             'address' => ['required', 'string', 'max:255'],
             'bank_acc_no' => ['iban', 'nullable'],

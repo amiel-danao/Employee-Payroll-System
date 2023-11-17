@@ -40,7 +40,7 @@ class RequestServices
         $empReq->update($req);
 
         // Send Email to Employee informing them of the status update.
-        Mail::to($empReq->employee->email)->send(new RequestStatusUpdated($empReq));
+        // Mail::to($empReq->employee->email)->send(new RequestStatusUpdated($empReq));
     }
 
 

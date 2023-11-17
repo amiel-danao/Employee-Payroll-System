@@ -4,6 +4,7 @@ import GuestLayout from '@/Layouts/GuestLayout.vue';
 import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import TextInput from '@/Components/TextInput.vue';
+import PasswordField from '@/Components/PasswordField.vue';
 import {Head, Link, useForm} from '@inertiajs/vue3';
 import {onMounted, ref} from "vue";
 
@@ -72,7 +73,16 @@ const submit = async () => {
             <div class="mt-4">
                 <InputLabel for="password" value="Password" />
 
-                <TextInput
+                <!-- <TextInput
+                    id="password"
+                    type="password"
+                    class="mt-1 block w-full"
+                    v-model="form.password"
+                    required
+                    autocomplete="current-password"
+                /> -->
+
+                <PasswordField
                     id="password"
                     type="password"
                     class="mt-1 block w-full"

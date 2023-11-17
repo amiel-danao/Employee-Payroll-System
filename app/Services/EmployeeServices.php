@@ -67,11 +67,11 @@ class EmployeeServices
         $emp->assignRole($res['role']);
 
         // Send Email to user with credentials
-        Mail::to($emp->email)->send(new EmployeeRegisterationCredentials([
-            'name' => $emp->name,
-            'email' => $emp->email,
-            'password' => $password,
-        ]));
+        // Mail::to($emp->email)->send(new EmployeeRegisterationCredentials([
+        //     'name' => $emp->name,
+        //     'email' => $emp->email,
+        //     'password' => $password,
+        // ]));
 
         return to_route('employees.show', ['employee' => $emp->id]);
     }
