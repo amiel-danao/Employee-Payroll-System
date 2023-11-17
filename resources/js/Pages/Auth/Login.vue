@@ -26,10 +26,15 @@ const form = useForm({
     remember: false,
 });
 
-const submit = () => {
-    form.post(route('login'), {
-        onFinish: () => form.reset('password'),
-    });
+const submit = async () => {
+    try {
+        const response = await form.post(route('login'), {
+            onFinish: () => form.reset('password'),
+        });
+        console.log(response); // Log successful response
+    } catch (error) {
+        console.error(error); // Log any errors
+    }
 };
 </script>
 
