@@ -90,7 +90,7 @@ Route::group(['middleware' => ['auth']], function () {
 });
 
 // Redirect authenticated users to the dashboard
-Route::redirect('/', '/dashboard')->middleware('auth');
+Route::redirect('/', '/dashboard', 301)->middleware('auth');
 
 // Language Switching
 Route::get('language/{language}', function ($language) {

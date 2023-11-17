@@ -29,7 +29,7 @@ const form = useForm({
 
 const submit = async () => {
     try {
-        const response = await form.post(route('login'), {
+        const response = await form.post(route('login', [], { protocol: 'https' }), {
             onFinish: () => form.reset('password'),
         });
         console.log(response); // Log successful response

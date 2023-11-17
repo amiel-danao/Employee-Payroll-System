@@ -53,8 +53,8 @@ class DatabaseSeeder extends Seeder
 
         // Create Test Employees
         $root = Employee::factory()->create([
-            'name' => 'Admin',
-            'email' => 'admin@email.com',
+            'name' => 'Manager',
+            'email' => 'manager@email.com',
             'phone' => '09954261220',
             'employee_id' => '29904268801154',
             'hired_on' => '2023-01-01',
