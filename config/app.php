@@ -16,7 +16,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'HRS'),
+    'name' => env('APP_NAME', 'ScreenTime'),
 
     /*
     |--------------------------------------------------------------------------
@@ -55,7 +55,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => env('APP_URL', 'https://screen-time-ph-b7513119d5b8.herokuapp.com/'),
 
     'asset_url' => env('ASSET_URL'),
 
