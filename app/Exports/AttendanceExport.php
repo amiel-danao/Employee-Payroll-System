@@ -10,7 +10,17 @@ class AttendanceExport implements FromCollection, WithHeadings
 {
     public function collection()
     {
-        return Attendance::all();
+        return Attendance::with('employee')->get()->reject(function ($attendance) {
+            return $attendance->status === 'missed';
+        })->map(function ($attendance) {
+            return [
+                'Employee Name' => $attendance->employee->name ?? '', // Fetch the employee's name
+                'Employee ID' => $attendance->employee_id,                
+                'Date' => $attendance->date,
+                'Status' => $attendance->status,
+                // Add more columns as needed
+            ];
+        });
     }
 
     public function headings(): array
@@ -18,14 +28,9 @@ class AttendanceExport implements FromCollection, WithHeadings
         return [
             'ID',
             'Employee ID',
+            'Employee Name',
             'Date',
             'Status',
-            'Sign In Time',
-            'Sign Off Time',
-            'Notes',
-            'Manually Filled',
-            'Created At',
-            'Updated At',
             // Add more columns as needed
         ];
     }

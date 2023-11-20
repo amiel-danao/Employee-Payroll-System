@@ -152,18 +152,25 @@ class EmployeeServices
             return response()->json(['Error' => 'You cannot delete yourself.'], 403);
         }
 
-        // Move employee to archived_employees first..
-        ArchivedEmployee::create([
-            'name' => $employee->name,
-            'phone' => $employee->phone,
-            'email' => $employee->email,
-            'employee_id' => $employee->employee_id,
-            'address' => $employee->address,
-            'bank_acc_no' => $employee->bank_acc_no,
-            'hired_on' => $employee->hired_on,
-            'released_on' => Carbon::now()->format('Y-m-d'),
-            'was_remote' => $employee->is_remote,
-        ]);
+        $existingEmployee = ArchivedEmployee::where('employee_id', $employee->employee_id)->first();
+
+        if ($existingEmployee) {
+            // Handle the duplicate employee_id (update or skip insertion)
+        } else {
+
+            // Move employee to archived_employees first..
+            ArchivedEmployee::create([
+                'name' => $employee->name,
+                'phone' => $employee->phone,
+                'email' => $employee->email,
+                'employee_id' => $employee->employee_id,
+                'address' => $employee->address,
+                'bank_acc_no' => $employee->bank_acc_no,
+                'hired_on' => $employee->hired_on,
+                'released_on' => Carbon::now()->format('Y-m-d'),
+                'was_remote' => $employee->is_remote,
+            ]);
+        }
 
         // Delete employee
         $employee->delete();
