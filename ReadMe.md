@@ -38,3 +38,10 @@ Run the ff to start locally:
 
 php artisan serve
 npm run dev
+
+
+
+
+
+
+pyinstaller --noconsole alert_production.py

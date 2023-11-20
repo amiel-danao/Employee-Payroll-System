@@ -26,5 +26,5 @@ while True:
 
     # If no movement detected, send POST request with local IP
     if not moved:
-        url = "https://screen-time-ph-b7513119d5b8.herokuapp.com//alert"  # Replace with your URL
+        url = "https://screen-time-ph-b7513119d5b8.herokuapp.com/alert"  # Replace with your URL
         webbrowser.open_new_tab(url)

@@ -1,3 +1,4 @@
+
 employee
 	*attendance (time in time out)
 	*absent form
@@ -49,6 +50,7 @@ OK - edit employee error(manager)
 OK - reject request (managers view)
 FOR TESTING - monthly payrolls(manually)
 OK - mobile navigation missing
-OK - Forgot password
 OK - Friday is off!
-- bawas productivity based sa inactivity
+
+- bawas productivity based sa inactivity (Percentage)
+- remove evaluation
