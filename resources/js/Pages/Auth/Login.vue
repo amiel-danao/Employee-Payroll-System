@@ -29,15 +29,12 @@ const form = useForm({
 
 const submit = async () => {
     try {
-        await form.post(route('login', [], { protocol: 'https' }), {
+        const response = await form.post(route('login', [], { protocol: 'https' }), {
             onFinish: () => form.reset('password'),
         });
-
-        // Redirect to /dashboard after login attempt
-        window.location.href = '/dashboard';
+        console.log(response); // Log successful response
     } catch (error) {
-        console.error('Error during login:', error);
-        // Handle error
+        console.error(error); // Log any errors
     }
 };
 </script>

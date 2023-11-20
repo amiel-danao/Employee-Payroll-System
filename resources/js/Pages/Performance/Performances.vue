@@ -63,7 +63,7 @@ console.log(props.tasks);
     <div class="py-8">
       <div class="flex flex-col md:flex-row justify-between md:gap-4" v-if="tasks">
         <Card class="!p-2 w-full">
-          <h1 class="text-2xl">{{ __('Emplyee Performance') }}<small> (Task Done)</small></h1>
+          <h1 class="text-2xl">{{ __('Employee Performance') }}<small> (Task Done)</small></h1>
           <div class="flex flex-wrap justify-center gap-4">
             <Bar id="my-chart-id" :options="chartOptions" :data="chartData" />
           </div>
