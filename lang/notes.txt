@@ -1,0 +1,40 @@
+employee
+	*attendance (time in time out)
+	*absent form
+	*payroll (automatic)	
+	*register own account but wait for the admin to give them their token
+	*confirmation if OT or not OT page
+	*self-assigned tasks (max 5 task first before getting new tasks)
+	*upload files/screenshot current work
+	*show productivity chart of own
+	*productivity is based on tasks
+	*not moving the cursor (notify employee, should click within 1 minute, failing to do so will give bad record)
+	
+	
+manager
+	*manage other manager accounts
+	*delete employee
+	*attendance (time in time out)
+	*view attendance of employees
+	*manage absences request (change status)
+	*Tasks creation
+	*OT message to send to employee	
+	*payroll generate button
+	*dropdown employee productivity chart	
+	
+	Download records :excel format
+	*download calendar(absences)
+	*download attendance(all employees)
+	Download productivity (1 employee per sheet)
+	*Download payroll
+
+	manage registration tokens
+
+
+php artisan monthly-payrolls:run
+php artisan up
+
+php artisan config:clear
+php artisan route:clear
+php artisan cache:clear 
+php artisan view:clear
