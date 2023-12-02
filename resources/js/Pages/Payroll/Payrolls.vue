@@ -85,12 +85,12 @@ watch(status, filter);
                                         <label for="horizontal-list-radio-pending" class="li-radio-label">{{__('Pending')}}</label>
                                     </div>
                                 </li>
-                                <li class="li-checkbox">
+                                <!-- <li class="li-checkbox">
                                     <div class="ul-li-div-radio">
                                         <input id="horizontal-list-radio-reviewed" type="radio" value="reviewed" v-model="status" name="list-radio" class="li-radio-input">
                                         <label for="horizontal-list-radio-reviewed" class="li-radio-label">{{__('Reviewed')}}</label>
                                     </div>
-                                </li>
+                                </li> -->
                                 <li class="li-checkbox">
                                     <div class="ul-li-div-radio">
                                         <input id="horizontal-list-radio-paid" type="radio" value="paid" v-model="status" name="list-radio" class="li-radio-input">
@@ -106,7 +106,7 @@ watch(status, filter);
                             <TableHead>{{__('Payroll ID')}}</TableHead>
                             <TableHead>{{__('Employee Name')}}</TableHead>
                             <TableHead>{{__('Total Amount')}}</TableHead>
-                            <TableHead>{{__('Due Date')}}</TableHead>
+                            <TableHead>{{__('Number of Hours')}}</TableHead>
                             <TableHead>{{__('Status')}}</TableHead>
                             <TableHead v-if="$page.props.auth.user.roles.includes('admin')">{{__('Action')}}</TableHead>
                         </template>

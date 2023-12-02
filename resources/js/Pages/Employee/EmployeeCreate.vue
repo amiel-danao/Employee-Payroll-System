@@ -41,6 +41,7 @@ const form = useForm({
     salary: '',
     role: '',
     is_remote: false,
+    is_active: true,
 });
 
 const positionForm = useForm({

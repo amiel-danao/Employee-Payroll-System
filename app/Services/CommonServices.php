@@ -204,8 +204,7 @@ class CommonServices extends Controller
     public function isTodayOff(): bool
     {
         $date = Carbon::now()->toDateString();
-        $isWeekend = $this->isWeekend($date);
-        return $this->isHoliday($date) || $isWeekend;
+        return $this->isHoliday($date) || $this->isWeekend($date);
     }
 
 }

@@ -32,6 +32,7 @@ class EmployeeServices
             'department_id' => $res['department_id'],
             'is_remote' => $res['is_remote'],
             'password' => $res['password'],
+            'is_active' => $res['is_active'],
         ]);
 
         // Salary Registration
@@ -67,11 +68,11 @@ class EmployeeServices
         $emp->assignRole($res['role']);
 
         // Send Email to user with credentials
-        // Mail::to($emp->email)->send(new EmployeeRegisterationCredentials([
-        //     'name' => $emp->name,
-        //     'email' => $emp->email,
-        //     'password' => $password,
-        // ]));
+        Mail::to($emp->email)->send(new EmployeeRegisterationCredentials([
+            'name' => $emp->name,
+            'email' => $emp->email,
+            'password' => $password,
+        ]));
 
         return to_route('employees.show', ['employee' => $emp->id]);
     }
@@ -91,6 +92,7 @@ class EmployeeServices
             'branch_id' => $res['branch_id'],
             'department_id' => $res['department_id'],
             'is_remote' => $res['is_remote'],
+            'is_active' => $res['is_active'],
         ]);
 
         // Update Shifts, Salary, Position, and Permissions
@@ -152,25 +154,18 @@ class EmployeeServices
             return response()->json(['Error' => 'You cannot delete yourself.'], 403);
         }
 
-        $existingEmployee = ArchivedEmployee::where('employee_id', $employee->employee_id)->first();
-
-        if ($existingEmployee) {
-            // Handle the duplicate employee_id (update or skip insertion)
-        } else {
-
-            // Move employee to archived_employees first..
-            ArchivedEmployee::create([
-                'name' => $employee->name,
-                'phone' => $employee->phone,
-                'email' => $employee->email,
-                'employee_id' => $employee->employee_id,
-                'address' => $employee->address,
-                'bank_acc_no' => $employee->bank_acc_no,
-                'hired_on' => $employee->hired_on,
-                'released_on' => Carbon::now()->format('Y-m-d'),
-                'was_remote' => $employee->is_remote,
-            ]);
-        }
+        // Move employee to archived_employees first..
+        ArchivedEmployee::create([
+            'name' => $employee->name,
+            'phone' => $employee->phone,
+            'email' => $employee->email,
+            'employee_id' => $employee->employee_id,
+            'address' => $employee->address,
+            'bank_acc_no' => $employee->bank_acc_no,
+            'hired_on' => $employee->hired_on,
+            'released_on' => Carbon::now()->format('Y-m-d'),
+            'was_remote' => $employee->is_remote,
+        ]);
 
         // Delete employee
         $employee->delete();

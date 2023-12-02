@@ -10,27 +10,23 @@ class AttendanceExport implements FromCollection, WithHeadings
 {
     public function collection()
     {
-        return Attendance::with('employee')->get()->reject(function ($attendance) {
-            return $attendance->status === 'missed';
-        })->map(function ($attendance) {
-            return [
-                'Employee Name' => $attendance->employee->name ?? '', // Fetch the employee's name
-                'Employee ID' => $attendance->employee_id,                
-                'Date' => $attendance->date,
-                'Status' => $attendance->status,
-                // Add more columns as needed
-            ];
-        });
+        return Attendance::select('id', 'employee_id', 'date', 'status', 'sign_in_time', 'sign_off_time')->where('status', 'on_time')->get();
     }
 
     public function headings(): array
     {
         return [
             'ID',
-            'Employee ID',
             'Employee Name',
+            'Employee ID',
             'Date',
             'Status',
+            'Sign In Time',
+            'Sign Off Time',
+            // 'Notes',
+            // 'Manually Filled',
+            // 'Created At',
+            // 'Updated At',
             // Add more columns as needed
         ];
     }

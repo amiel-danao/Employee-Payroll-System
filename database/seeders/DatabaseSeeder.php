@@ -53,8 +53,8 @@ class DatabaseSeeder extends Seeder
 
         // Create Test Employees
         $root = Employee::factory()->create([
-            'name' => 'Manager',
-            'email' => 'manager@email.com',
+            'name' => 'Admin',
+            'email' => 'admin@email.com',
             'phone' => '09954261220',
             'employee_id' => '29904268801154',
             'hired_on' => '2023-01-01',
@@ -125,6 +125,7 @@ class DatabaseSeeder extends Seeder
                 if (!$commonServices->isDayOff($startDate->format('Y-m-d'))) {
                     if(fake()->boolean){
                         Attendance::create([
+                            'name' => $employee->name,
                             'employee_id' => $employee->id,
                             'date' => $startDate->format('Y-m-d'),
                             'status' => 'on_time',
@@ -133,6 +134,7 @@ class DatabaseSeeder extends Seeder
                         ]);
                     } else {
                         Attendance::create([
+                        'name' => $employee->name,
                         'employee_id' => $employee->id,
                         'date' => $startDate->format('Y-m-d'),
                         'status' => 'missed',

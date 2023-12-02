@@ -26,11 +26,12 @@ class PayrollServices
             'total_deductions' => 0,
             'total_additions' => 0,
             'total_payable' => $payroll->base,
+            'total_hours' => 0,
             'is_reviewed' => true,
             'status' => true, // paid
         ]);
         if ($res['quick_pay_send_email']) {
-            // Mail::to($payroll->employee->email)->queue(new PayrollEmail($payroll));
+            Mail::to($payroll->employee->email)->queue(new PayrollEmail($payroll));
         }
         return to_route('payrolls.show', ['payroll' => $payroll]);
     }
@@ -91,6 +92,7 @@ class PayrollServices
             'total_deductions' => $payroll->deductions->getSum(),
             'total_additions' => $payroll->additions->getSum(),
             'total_payable' => $payroll->base * $res['performance_multiplier'] + $payroll->additions->getSum() - $payroll->deductions->getSum(),
+            'total_hours' => $hours['hoursDifference'],
             'is_reviewed' => true,
         ]);
 
@@ -113,7 +115,7 @@ class PayrollServices
         ]);
 
         if ($request->sendEmail && $payroll->status) {
-            // Mail::to($payroll->employee->email)->queue(new PayrollEmail($payroll));
+            Mail::to($payroll->employee->email)->queue(new PayrollEmail($payroll));
         }
     }
 }

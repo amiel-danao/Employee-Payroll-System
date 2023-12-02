@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 use App\Exports\AttendanceExport;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Models\Department;
 
 
 class PerformanceController extends Controller
@@ -46,6 +47,9 @@ class PerformanceController extends Controller
         // Group tasks by employee name
         $groupedTasks = $tasks->groupBy('employee.name');
     
+
+        // fetch departments from the database
+        $departments = Department::pluck('name')->toArray();
         // Fill the $monthsData array with task counts for each employee
         $result = $groupedTasks->map(function ($employeeTasks, $employeeName) use (&$monthsData) {
             $taskCount = $employeeTasks->groupBy(function ($task) {
@@ -70,18 +74,9 @@ class PerformanceController extends Controller
     
         return Inertia::render('Performance/Performances', [
             'tasks' => $result->values()->toArray(),
+            'departments' => $departments, 
         ]);
     }
-    
-    
-    
-
-    
-
-    
-
-
-    
 
     public function employee(Request $request)
     {
@@ -107,6 +102,9 @@ class PerformanceController extends Controller
     
         // Group tasks by employee name
         $groupedTasks = $tasks->groupBy('employee.name');
+
+        // Fetch departments from the database
+        $departments = Department::pluck('name')->toArray();
     
         // Fill the $monthsData array with task counts for each employee
         $result = $groupedTasks->map(function ($employeeTasks, $employeeName) use (&$monthsData) {
@@ -132,6 +130,7 @@ class PerformanceController extends Controller
     
         return Inertia::render('Performance/Performances', [
             'tasks' => $result->values()->toArray(),
+            'departments' => $departments, // Pass departments to the view
         ]);
     }
 

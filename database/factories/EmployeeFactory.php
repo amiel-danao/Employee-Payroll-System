@@ -32,6 +32,7 @@ class EmployeeFactory extends Factory
             'branch_id' => fake()->numberBetween(1, 2),
             'hired_on' => Carbon::createFromTimestamp(mt_rand(Carbon::now()->subYears(3)->timestamp, Carbon::now()->timestamp))->format('Y-m-d'),
             'is_remote' => false,
+            'is_active' => false,
         ];
     }
 

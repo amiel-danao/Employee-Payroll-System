@@ -54,8 +54,8 @@ class RegisteredUserController extends Controller
         $employeeId = $year . '00001';
 
         if($lastEmployee){
-            $lastId = substr($lastEmployee->employee_id, 4);
-            $employeeId = $year . str_pad(intval($lastId) + 1, 5, '0', STR_PAD_LEFT);
+            $lastId = substr($lastEmployee->id, 4);
+            $employeeId = $year . str_pad($lastId + 1, 5, '0', STR_PAD_LEFT);
         }
 
         $employee = Employee::factory()->create([

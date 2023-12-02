@@ -10,27 +10,28 @@ class PayrollExport implements FromCollection, WithHeadings
 {
     public function collection()
     {
-        return Payroll::with('employee')->get()->map(function ($payroll) {
-            return [                
-                'Employee ID' => $payroll->employee_id,
-                'Employee Name' => $payroll->employee->name ?? '', // Fetch the employee's name
-                'Base' => $payroll->base,
-                'Total Additions' => $payroll->total_additions,
-                'Total Deductions' => $payroll->total_deductions,
-                'Total Payable' => $payroll->total_payable,
-            ];
-        });
+        return Payroll::all();
     }
 
     public function headings(): array
     {
         return [
-            'Employee Name',
+            'ID',
             'Employee ID',
-            'Salary',
-            'Additions',
-            'Deductions',
-            'Payable',
+            'Employee Name',
+            'Currency',
+            'Base',
+            'Performance Multiplier',
+            'Total Additions',
+            'Total Deductions',
+            'Total Payable',
+            'Total Hours',
+            // 'Due Date',
+            // 'Is Viewed',
+            // 'Status',
+            // 'Created At',
+            // 'Updated At',
+            // Add more columns as needed
         ];
     }
 }

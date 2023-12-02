@@ -217,10 +217,10 @@ onMounted(() => {
                                 <p class="font-medium">{{ __('Weekends') }}: </p>
                                 <p>{{ employee_stats['weekendsThisMonth'] }} {{ __('Days') }}</p>
                             </div>
-                            <!-- <div class="flex justify-between align-middle mb-6 sm:mb-2">
+                            <div class="flex justify-between align-middle mb-6 sm:mb-2">
                                 <p class="font-medium">{{ __('Holidays') }}: </p>
                                 <p>{{ employee_stats['holidaysThisMonth'] }} {{ __('Days') }}</p>
-                            </div> -->
+                            </div>
 
                         </div>
                     </Card>

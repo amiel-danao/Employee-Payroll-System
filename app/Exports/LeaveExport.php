@@ -10,26 +10,32 @@ class LeaveExport implements FromCollection, WithHeadings
 {
     public function collection()
     {
-        return Attendance::where('status', 'missed')
-            ->with('employee') // Load the related employee data
-            ->get()
-            ->map(function ($attendance) {
-                return [                    
-                    'Employee Name' => $attendance->employee->name, // Fetch the employee's name
-                    'Employee ID' => $attendance->employee_id,
-                    'Date' => $attendance->date,
-                    'Notes' => $attendance->notes
-                ];
-            });
+        $data = Attendance::where('status', 'missed')->get();
+        
+        foreach ($data as $key => $item) {
+            unset($data[$key]->created_at);
+            unset($data[$key]->updated_at);
+        }
+
+        return $data;
     }
 
     public function headings(): array
     {
         return [
-            'Employee Name',
-            'Employee ID',            
-            'Date',            
-            'Reason'
+            'ID',
+            'Name',
+            'Employee ID',
+            'Date',
+            'Status',
+            'Reason',
+            // 'Sign In Time',
+            // 'Sign Off Time',
+            'Days of Absence',
+            // 'Notes',
+            // 'Manually Filled',
+            // 'Created At',
+            // 'Updated At',
             // Add more columns as needed
         ];
     }

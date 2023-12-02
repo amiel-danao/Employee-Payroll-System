@@ -1,4 +1,3 @@
-
 employee
 	*attendance (time in time out)
 	*absent form
@@ -39,18 +38,3 @@ php artisan config:clear
 php artisan route:clear
 php artisan cache:clear 
 php artisan view:clear
-
-
-
-OK - Create account error
-OK - Add employee error(manager)
-FOR TEST - log in (Two-three times bago ma login)
-OK - Tas sa log in pwede po ba lagyan ng show para makita tinatype.
-OK - edit employee error(manager)
-OK - reject request (managers view)
-FOR TESTING - monthly payrolls(manually)
-OK - mobile navigation missing
-OK - Friday is off!
-
-- bawas productivity based sa inactivity (Percentage)
-- remove evaluation

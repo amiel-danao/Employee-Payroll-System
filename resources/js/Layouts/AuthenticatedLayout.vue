@@ -319,7 +319,7 @@ function changeLanguage(locale){
                         class="sm:hidden"
                     >
 
-                        <!-- <Dropdown align="right" width="48">
+                        <Dropdown align="right" width="48">
                             <template #trigger>
                                         <span class="inline-flex rounded-md">
                                             <button
@@ -339,8 +339,9 @@ function changeLanguage(locale){
                                     {{ locales[locale][0] }}
                                 </DropdownLink>
                             </template>
-                        </Dropdown> -->
-                        <div v-if="$page.props.auth.user.roles.includes('admin')" class="pt-2 pb-3 space-y-1">
+                        </Dropdown>
+
+                        <div class="pt-2 pb-3 space-y-1">
                             <ResponsiveNavLink :href="route('dashboard.index')"
                                                :active="route().current('dashboard.index')">
                                 Dashboard
@@ -349,25 +350,9 @@ function changeLanguage(locale){
                             <ResponsiveNavLink :href="route('employees.index')">Employees</ResponsiveNavLink>
                             <ResponsiveNavLink :href="route('branches.index')">Organization</ResponsiveNavLink>
                             <ResponsiveNavLink :href="route('requests.index')">Requests</ResponsiveNavLink>
-                            <ResponsiveNavLink :href="route('zzz.index')">Tasks</ResponsiveNavLink>
+                            <!-- <ResponsiveNavLink :href="route('calendar.index')">Calendar</ResponsiveNavLink> -->
                             <ResponsiveNavLink :href="route('attendances.index')">Attendance</ResponsiveNavLink>
                             <ResponsiveNavLink :href="route('payrolls.index')">Payrolls</ResponsiveNavLink>
-                            <ResponsiveNavLink :href="route('performance.index')">Performance</ResponsiveNavLink>
-                            <ResponsiveNavLink :href="route('downloads.index')">Downloads</ResponsiveNavLink>
-                        </div>
-
-                        <div v-else class="pt-2 pb-3 space-y-1">
-                            <ResponsiveNavLink :href="route('dashboard.index')"
-                                               :active="route().current('dashboard.index')">
-                                Dashboard
-                            </ResponsiveNavLink>
-
-                            <ResponsiveNavLink :href="route('my-profile')">My Profile</ResponsiveNavLink>
-                            <ResponsiveNavLink :href="route('requests.index')">My Requests</ResponsiveNavLink>
-                            <ResponsiveNavLink :href="route('zzz.index')">Tasks</ResponsiveNavLink>
-                            <ResponsiveNavLink :href="route('payrolls.index')">My Payrolls</ResponsiveNavLink>
-                            <ResponsiveNavLink :href="route('performance.employee')">My Performance</ResponsiveNavLink>
-                            <ResponsiveNavLink :href="route('attendance.dashboard')">My Attendance</ResponsiveNavLink>
                         </div>
 
                         <!-- Responsive Settings Options -->

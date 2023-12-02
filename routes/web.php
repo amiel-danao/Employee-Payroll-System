@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('alert', [\App\Http\Controllers\AlertController::class, 'index'])->name('alert.index');
 Route::post('alert/givepenalty', [\App\Http\Controllers\AlertController::class, 'givePenalty'])->name('alert.give-penalty');
 
-Route::resource('zzz', \App\Http\Controllers\TaskController::class)->only(['index', 'show', 'create', 'store', 'update', 'destroy']);
+Route::resource('zzz', \App\Http\Controllers\TaskController::class)->only(['index', 'show', 'create', 'store', 'update']);
 
 Route::group(['middleware' => ['role:admin', 'auth']], function () {
 
@@ -67,6 +67,8 @@ Route::group(['middleware' => ['role:admin', 'auth']], function () {
 
 // Logged
 Route::group(['middleware' => ['auth']], function () {
+    
+
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -87,10 +89,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('attendance/signin', [\App\Http\Controllers\AttendanceController::class, 'dashboardSignInAttendance'])->name('attendance.dashboardSignIn');
     Route::post('attendance/signoff', [\App\Http\Controllers\AttendanceController::class, 'dashboardSignOffAttendance'])->name('attendance.dashboardSignOff');
 
+    
 });
 
 // Redirect authenticated users to the dashboard
-Route::redirect('/', '/dashboard', 301)->middleware('auth');
+Route::redirect('/', '/dashboard')->middleware('auth');
 
 // Language Switching
 Route::get('language/{language}', function ($language) {

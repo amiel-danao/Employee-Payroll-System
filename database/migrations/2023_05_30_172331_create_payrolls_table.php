@@ -20,6 +20,7 @@ return new class extends Migration
             $table->decimal('total_additions', 10, 2)->default(0);
             $table->decimal('total_deductions', 10, 2)->default(0);
             $table->decimal('total_payable', 10, 2)->default(0); // Maybe not needed
+            $table->decimal('total_hours', 10, 2)->default(0);
             $table->date('due_date');
             $table->boolean('is_reviewed')->default(false); // True: Paid, False: Pending
             $table->boolean('status')->default(false); // True: Paid, False: Pending

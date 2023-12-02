@@ -117,7 +117,7 @@ class EmployeeController extends Controller
                 ->select('employees.id', 'employees.name', 'employees.phone', 'employees.employee_id', 'employees.email',
                     'employees.address', 'employees.bank_acc_no', 'departments.name as department_name',
                     'departments.id as department_id', 'branches.id as branch_id', 'branches.name as branch_name',
-                    'employees.hired_on', 'employees.is_remote')
+                    'employees.hired_on', 'employees.is_remote', 'employees.is_active')
                 ->first(),
         ]);
     }
@@ -135,7 +135,7 @@ class EmployeeController extends Controller
                 ->where('employees.id', $id)
                 ->select('employees.id', 'employees.name', 'employees.phone', 'employees.employee_id', 'employees.email',
                     'employees.address', 'employees.bank_acc_no', 'employees.hired_on', 'departments.name as department_name',
-                    'departments.id as department_id', 'branches.id as branch_id', 'branches.name as branch_name', 'employees.is_remote')
+                    'departments.id as department_id', 'branches.id as branch_id', 'branches.name as branch_name', 'employees.is_remote', 'employees.is_active')
                 ->first(),
             'departments' => Department::select(['id', 'name'])->get(),
             'branches' => Branch::select(['id', 'name'])->get(),

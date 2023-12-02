@@ -4,7 +4,6 @@ import GuestLayout from '@/Layouts/GuestLayout.vue';
 import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import TextInput from '@/Components/TextInput.vue';
-import PasswordField from '@/Components/PasswordField.vue';
 import {Head, Link, useForm} from '@inertiajs/vue3';
 import {onMounted, ref} from "vue";
 
@@ -27,20 +26,15 @@ const form = useForm({
     remember: false,
 });
 
-const submit = async () => {
-    try {
-        const response = await form.post(route('login', [], { protocol: 'https' }), {
-            onFinish: () => form.reset('password'),
-        });
-        console.log(response); // Log successful response
-    } catch (error) {
-        console.error(error); // Log any errors
-    }
+const submit = () => {
+    form.post(route('login'), {
+        onFinish: () => form.reset('password'),
+    });
 };
 </script>
 
 <template>
-    <GuestLayout>
+    <GuestLayout class="login-background">
         <Head title="Log in"/>
 
         <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
@@ -73,16 +67,7 @@ const submit = async () => {
             <div class="mt-4">
                 <InputLabel for="password" value="Password" />
 
-                <!-- <TextInput
-                    id="password"
-                    type="password"
-                    class="mt-1 block w-full"
-                    v-model="form.password"
-                    required
-                    autocomplete="current-password"
-                /> -->
-
-                <PasswordField
+                <TextInput
                     id="password"
                     type="password"
                     class="mt-1 block w-full"
@@ -99,6 +84,14 @@ const submit = async () => {
                     <Checkbox name="remember" v-model:checked="form.remember"/>
                     <span class="ml-2 text-sm text-gray-600">Remember me</span>
                 </label>
+            </div>
+            <div class="block mt-4">
+                <Link
+                    :href="route('register')"
+                    class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                >
+                    Create an account
+                </Link>
             </div>
 
             <div class="flex items-center justify-end mt-4">
@@ -121,3 +114,10 @@ const submit = async () => {
         </form>
     </GuestLayout>
 </template>
+<style scoped>
+.login-background {
+    background-image: url('employee_image.png');
+    background-size: cover;
+    background-position: center;
+}
+</style>

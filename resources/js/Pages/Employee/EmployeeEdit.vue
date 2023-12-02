@@ -47,6 +47,7 @@ const form = useForm({
     salary: props.employee.salaries[props.employee.salaries.length - 1]['salary'],
     role: props.employee.roles[props.employee.roles.length-1]['name'],
     is_remote: props.employee.is_remote,
+    is_active: props.employee.is_active,
 });
 
 const positionForm = useForm({
@@ -592,7 +593,7 @@ const submitShift = () => {
                         </div>
                         <div class="grid grid-cols-2 gap-8 mt-4">
                             <div>
-                                <InputLabel for="salary" :value="__('Salary')" class="mb-1"/>
+                                <InputLabel for="salary" :value="__('Salary (Per Hour)')" class="mb-1"/>
                                 <div class="grid grid-cols-6">
                                     <select id="currency"
                                             class="fancy-selector-inline-textInput col-span-2 z-10 !mt-0"
@@ -656,12 +657,35 @@ const submitShift = () => {
                             </div>
                         </div>
 
+                        <div class="grid grid-cols-2 gap-8 mt-4">
+                            <div>
+                                <InputLabel for="is_active" :value="__('Employee Status')" class="inline"/>
+                                <ToolTip>
+                                    {{__('Indicates that the employee is active or inactive')}} <br/>
+                                </ToolTip>
+                                <div>
+                                    <Switch
+                                        v-model="form.is_active" dir="ltr"
+                                        :class="form.is_active ? 'bg-purple-600' : 'bg-gray-400'"
+                                        class="relative inline-flex h-6 w-11 items-center rounded-full mt-1"
+                                    >
+                                        <span class="sr-only">{{__('Employee Status')}}</span>
+                                        <span
+                                            :class="form.is_active ? 'translate-x-6' : 'translate-x-1'"
+                                            class="inline-block h-4 w-4 transform rounded-full bg-white transition"
+                                        />
+                                    </Switch>
+                                </div>
+                                <InputError class="mt-2" :message="form.errors.is_active"/>
+                            </div>
+                        </div>
+
                         <div class="flex items-center justify-end mt-4">
-                            <form @submit.prevent="destroy" class=" inline">
+                            <!-- <form @submit.prevent="destroy" class=" inline">
                                 <PrimaryButton class="bg-red-600 hover:bg-red-700 ml-4" >
                                     {{__('Delete Employee')}}
                                 </PrimaryButton>
-                            </form>
+                            </form> -->
                             <PrimaryButton class="ltr:ml-4 rtl:mr-4" :class="{ 'opacity-25': form.processing }"
                                            :disabled="form.processing">
                                 {{__('Edit Employee')}}

@@ -429,6 +429,100 @@ const submit = () => {
                         </InvoiceTable>
                     </Card>
                     <Card>
+                        <h1 class="card-header !mb-6">{{ __('Employee Evaluation') }}
+                            <ToolTip>
+                                {{ __('The following matrix will be used to determine the performance multiplier.') }}
+                                <br/>
+                                {{ __('You can override the multiplier value by entering a value in the input field below.')}}
+                            </ToolTip>
+                        </h1>
+                        <h1>{{ __('Please fill the following evaluation matrix:') }}</h1>
+                        <p class="text-xs">
+                            {{ __('*Note: Metrics created before the generation of this payroll will not be visible.')}}</p>
+
+                        <div class="mt-4">
+                            <div v-for="(metric, index) in metrics" :key="metric.id" :id="'metric-list-'+index"
+                                 class="mb-4">
+                                <div class="flex justify-between mb-1">
+                                    <h2 class="font-bold">{{ metric.criteria }}</h2><span
+                                    class="font-thin">({{ __('weight') }}: {{ metric.weight }})</span>
+                                </div>
+                                <ul class="items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                                    <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+                                        <div class="flex items-center pl-3">
+                                            <input :id="'ex-poor-radio-'+index" type="radio"
+                                                   v-model="form.metrics[index]"
+                                                   :value="1-(parseFloat(metrics[index].step)*3)"
+                                                   class="w-4 h-4 text-purple-600 bg-gray-100 border-gray-300 focus:ring-purple-500 dark:focus:ring-purple-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                            <label :for="'ex-poor-radio-'+index"
+                                                   class="li-checkbox-label">{{ __('Extremely Poor') }}</label>
+                                        </div>
+                                    </li>
+                                    <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+                                        <div class="flex items-center pl-3">
+                                            <input :id="'v-poor-radio-'+index" type="radio"
+                                                   v-model="form.metrics[index]"
+                                                   :value="1-(parseFloat(metrics[index].step)*2)"
+                                                   class="w-4 h-4 text-purple-600 bg-gray-100 border-gray-300 focus:ring-purple-500 dark:focus:ring-purple-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                            <label :for="'v-poor-radio-'+index"
+                                                   class="li-checkbox-label">{{ __('Very Poor') }}</label>
+                                        </div>
+                                    </li>
+                                    <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+                                        <div class="flex items-center pl-3">
+                                            <input :id="'poor-radio-'+index" type="radio" v-model="form.metrics[index]"
+                                                   :value="1-parseFloat(metrics[index].step)"
+                                                   class="w-4 h-4 text-purple-600 bg-gray-100 border-gray-300 focus:ring-purple-500 dark:focus:ring-purple-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                            <label :for="'poor-radio-'+index"
+                                                   class="li-checkbox-label">{{ __('Poor') }}</label>
+                                        </div>
+                                    </li>
+                                    <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+                                        <div class="flex items-center pl-3">
+                                            <input :id="'neutral-radio-'+index" type="radio"
+                                                   v-model="form.metrics[index]"
+                                                   :value="1"
+                                                   class="w-4 h-4 text-purple-600 bg-gray-100 border-gray-300 focus:ring-purple-500 dark:focus:ring-purple-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                            <label :for="'neutral-radio-'+index"
+                                                   class="li-checkbox-label">{{ __('Neutral') }}</label>
+                                        </div>
+                                    </li>
+                                    <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+                                        <div class="flex items-center pl-3">
+                                            <input :id="'good-radio-'+index" type="radio" v-model="form.metrics[index]"
+                                                   :value="1+parseFloat(metrics[index].step)"
+                                                   class="w-4 h-4 text-purple-600 bg-gray-100 border-gray-300 focus:ring-purple-500 dark:focus:ring-purple-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                            <label :for="'good-radio-'+index"
+                                                   class="li-checkbox-label">{{ __('Good') }}</label>
+                                        </div>
+                                    </li>
+                                    <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+                                        <div class="flex items-center pl-3">
+                                            <input :id="'v-good-radio-'+index" type="radio"
+                                                   v-model="form.metrics[index]"
+                                                   :value="1+(parseFloat(metrics[index].step)*2)"
+                                                   class="w-4 h-4 text-purple-600 bg-gray-100 border-gray-300 focus:ring-purple-500 dark:focus:ring-purple-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                            <label :for="'v-good-radio-'+index"
+                                                   class="li-checkbox-label">{{ __('Very Good') }}</label>
+                                        </div>
+                                    </li>
+                                    <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+                                        <div class="flex items-center pl-3">
+                                            <input :id="'excellent-radio-'+index" type="radio"
+                                                   v-model="form.metrics[index]"
+                                                   :value="1+(parseFloat(metrics[index].step)*3)"
+                                                   class="w-4 h-4 text-purple-600 bg-gray-100 border-gray-300 focus:ring-purple-500 dark:focus:ring-purple-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                            <label :for="'excellent-radio-'+index"
+                                                   class="li-checkbox-label">{{ __('Excellent') }}</label>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <p class="text-xs mt-1">{{ __('Weighted Points') }}: {{ recommended_multiplier }}</p>
+                        </div>
+
+                    </Card>
+                    <Card>
                         <h1 class="card-header !mb-6">{{ __('Performance Multiplier') }}
                             <ToolTip>
                                 {{ __('This value is a percentage that is applied to the base salary. Default value is 1 (no changes).') }}
