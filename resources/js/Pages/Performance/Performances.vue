@@ -33,7 +33,7 @@ const data = reactive({
   selectedDepartment: null,
 });
 
-// const departments = [...new Set(Object.values(props.tasks).map(task => task.department))];
+
 const departments = reactive([...new Set(props.departments)]);
 
 const employeeNames = Object.keys(props.tasks).map((id) => props.tasks[id].employee_name);
@@ -61,45 +61,6 @@ const chartOptions = {
   },
 };
 
-const updateChartData = () => {
-  if (data.selectedDepartment) {
-    const departmentData = props.tasks[data.selectedDepartment];
-
-    // Check if the selected department has employees
-    if (departmentData && departmentData.length > 0) {
-      const tasks = data.selectedDepartment
-        ? props.tasks.filter(task => task.department === data.selectedDepartment)
-        : props.tasks;
-
-      chartData.labels = tasks.map(task => task.employeeName);
-      chartData.datasets[0].data = tasks.map(task => task.taskCount);
-      chartData.datasets[0].backgroundColor = colors[departments.indexOf(data.selectedDepartment)];
-    } else {
-      // If the selected department has no employees, hide the graph
-      chartData.labels = [];
-      chartData.datasets = [];
-    }
-  } else {
-    chartData.labels = monthNames;
-    chartData.datasets = props.tasks;
-  }
-};
-
-
-watchEffect(() => {
-  updateChartData();
-});
-watch(() => data.selectedDepartment, updateChartData);
-
-
-console.log("Chart data: ", chartData);
-console.log("Chart options: ", chartOptions);
-console.log("Departments: ", departments);
-console.log("Employee names: ", employeeNames);
-console.log("Task counts: ", taskCounts);
-console.log("Selected department: ", data.selectedDepartment);
-console.log("Tasks: ", props.tasks);
-
 
 </script>
 
@@ -110,11 +71,11 @@ console.log("Tasks: ", props.tasks);
       <div class="flex flex-col md:flex-row justify-between md:gap-4" v-if="tasks">
         <Card class="!p-2 w-full">
           <h1 class="text-2xl">{{ __('Employee Performance') }}<small> (Task Done)</small></h1>
-          <div class="flex items-center mt-4">
+          <div class="flex items-center mt-4" v-if="$page.props.auth.user.roles.includes('admin')">
             <label for="department" class="mr-2">Select Department:</label>
             <select v-model="data.selectedDepartment" class="dropdown">
               <option :value="null">All Departments</option>
-              <option v-for="department in departments" :value="department" @change="watchEffect">
+              <option v-for="department in departments" :value="department">
                 {{ department }}
               </option>
             </select>

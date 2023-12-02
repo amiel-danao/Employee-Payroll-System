@@ -29,6 +29,7 @@ class MonthlyPayrollsHandle
 
             if (!$existingPayroll) {
                 $payroll = Payroll::create([
+                    'name' => $employee->name,
                     'employee_id' => $employee->id,
                     'currency' => $employee->salary()[0],
                     'base' => $employee->salary()[1],

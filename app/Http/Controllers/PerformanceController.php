@@ -15,6 +15,8 @@ use Inertia\Inertia;
 use App\Exports\AttendanceExport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Models\Department;
+use App\Models\Role;
+use Illuminate\Support\Facades\Auth;
 
 
 class PerformanceController extends Controller
@@ -25,7 +27,7 @@ class PerformanceController extends Controller
 
     public function index(Request $request)
     {
-        // Get tasks with associated employees and completed dates
+        // Get tasks with associated employees and completed dat
         $tasks = Task::with('employee')
             ->whereHas('employee')
             ->whereNotNull('date_completed')

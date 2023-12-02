@@ -68,7 +68,7 @@ class DatabaseSeeder extends Seeder
             'employee_id' => '29904268801155',
             'hired_on' => '2023-01-01',
             'address' => 'Dasmariñas City',
-            'password' => '$2y$10$7BMn8WlpLkUB64fCCCVCvuFbqp4dO34dLL/a7MjMdoITz0FOIOZ.G', // passwprd
+            'password' => '$2y$10$7BMn8WlpLkUB64fCCCVCvuFbqp4dO34dLL/a7MjMdoITz0FOIOZ.G', // password
         ]);
 
         Employee::factory(14)->create();
@@ -266,8 +266,10 @@ class DatabaseSeeder extends Seeder
     private function generateRandomPayrolls(){
         for ($i = 1; $i <= Employee::count(); $i++) {
             $employee_id = Employee::find($i)->id;
+            $employee_name = Employee::find($i)->name;
 
             $p = Payroll::factory()->create([
+                'name' => $employee_name,
                 'employee_id' => $employee_id,
                 "due_date" => Carbon::now()->toDateString(),
             ]);
