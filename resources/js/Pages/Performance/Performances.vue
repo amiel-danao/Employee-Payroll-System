@@ -51,6 +51,14 @@ const chartData = reactive({
 
 const chartOptions = {
   responsive: true,
+  scales: {
+    y: {
+      ticks: {
+        beginAtZero: true,
+        precision: 0,
+      },
+    },
+  },
 };
 
 const updateChartData = () => {
@@ -111,6 +119,8 @@ console.log("Tasks: ", props.tasks);
               </option>
             </select>
           </div>
+          <!-- add a conditional statement to check if the current user is employee role -->
+
           <div class="flex flex-wrap justify-center gap-4">
             <Bar id="my-chart-id" :options="chartOptions" :data="chartData" />
           </div>

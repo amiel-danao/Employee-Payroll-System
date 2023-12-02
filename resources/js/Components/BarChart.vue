@@ -22,7 +22,16 @@
           datasets: [ { data: [40, 20, 12] } ]
         },
         chartOptions: {
-          responsive: true
+          responsive: true,
+          // make the Y-Axis start at 0, and cotinue it on whole numbers
+          scales: {
+            yAxes: [{
+              ticks: {
+                beginAtZero: true,
+                stepSize: 1,
+              }
+            }],
+          }
         }
       }
     }
