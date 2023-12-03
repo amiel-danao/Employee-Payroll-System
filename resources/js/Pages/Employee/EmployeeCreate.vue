@@ -556,7 +556,7 @@ const submitShift = () => {
                             </div>
                             <div class="grid grid-cols-2 gap-8 mt-4">
                                 <div>
-                                    <InputLabel for="salary" :value="__('Salary')" class="mb-1"/>
+                                    <InputLabel for="salary" :value="__('Salary (Per Hour)')" class="mb-1"/>
                                     <div class="grid grid-cols-6">
                                         <select id="currency"
                                                 class="fancy-selector-inline-textInput col-span-2 z-10 !mt-0"
@@ -579,7 +579,7 @@ const submitShift = () => {
                                             v-model="form.salary"
                                             required
                                             autocomplete="off"
-                                            placeholder="10000"
+                                            placeholder="1000"
                                         />
                                     </div>
                                     <InputError class="mt-2" :message="form.errors.currency"/>
